@@ -18,18 +18,17 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
+Auth::routes();
+
+Route::get('/dashboard', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Roles and permission route create with middleware auth for authentication purpose only
-Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('products', ProductController::class);
-});
+Route::get('/admin', function () {
+    return view('admin.index');
+})->middleware(['auth','role:admin'])->name('admin.index');
 
