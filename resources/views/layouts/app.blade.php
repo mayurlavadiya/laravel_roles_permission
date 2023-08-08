@@ -38,7 +38,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
+<body>git 
     <h2>Login Page</h2>
 </body>
 
